@@ -38,6 +38,7 @@ export const DocumentTable = ({
           <th>Description</th>
           <th>Status</th>
           <th>Total / Cost</th>
+          <th>Document Type</th>
           {userRole === UserRole.Manager && <th></th>}
         </tr>
         <tbody>
@@ -46,6 +47,11 @@ export const DocumentTable = ({
               <td>{document.description}</td>
               <td>{document.status}</td>
               <td>{document.cost ? document.cost : document.total}</td>
+              <td>
+                {document instanceof ExpenseReport
+                  ? "Expense Report"
+                  : "Requisition"}
+              </td>
               {userRole === UserRole.Manager &&
                 document.status === DocumentStatus.Submitted && (
                   <td>

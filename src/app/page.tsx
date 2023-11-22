@@ -14,11 +14,6 @@ import { Requisition } from "@/models/Requisition";
 import { ExpenseReport } from "@/models/ExpenseReport";
 import { DocumentStatus } from "@/models/Document";
 
-interface ReferredDoc {
-  document: Requisition | ExpenseReport;
-  index: number;
-}
-
 export default function Home() {
   const [activeUserRole, setActiveUserRole] = useState<UserRole>(
     UserRole.Employee
@@ -27,33 +22,12 @@ export default function Home() {
     []
   );
 
-  const [referredDocs, setReferredDocs] = useState<ReferredDoc[]>([]);
-
   const changeRole = (role: UserRole) => {
     setActiveUserRole(role);
   };
 
   useEffect(() => {
     const N = 10; // N SECONDS
-
-    // const interval = setInterval(() => {
-    //   documents
-    //     .filter((document) => document.status === DocumentStatus.Referred)
-    //     .map((document, index) => {
-    //       const currentTime = new Date().getTime();
-    //       const submittedAgoInSeconds =
-    //         (currentTime - document.submittedAt) / 1000;
-
-    //       if (submittedAgoInSeconds > N) {
-    //         document.status = DocumentStatus.Submitted;
-
-    //         const newDocuments = [...documents];
-    //         newDocuments[index] = document;
-    //         setDocuments(newDocuments);
-    //         console.log("hello");
-    //       }
-    //     });
-    // }, 1000);
 
     const interval = setInterval(() => {
       documents
@@ -69,13 +43,8 @@ export default function Home() {
             const newDocuments = [...documents];
             newDocuments[index] = document;
             setDocuments(newDocuments);
-            // console.log("hello");
           }
-
-          // return document;
         });
-
-      // setDocuments(documents);
     }, 1000);
 
     // Clear the interval
