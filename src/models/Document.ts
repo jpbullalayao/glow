@@ -11,7 +11,7 @@ export class Document {
   id: string;
   status: DocumentStatus;
   description: string;
-  submittedAt: Date;
+  submittedAt: number;
 
   constructor({ status, description, submittedAt }) {
     this.id = uuidv4();
