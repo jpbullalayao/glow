@@ -42,8 +42,8 @@ export const DocumentTable = ({
           {userRole === UserRole.Manager && <th></th>}
         </tr>
         <tbody>
-          {filteredDocs.map((document) => (
-            <tr>
+          {filteredDocs.map((document, i) => (
+            <tr key={`doc-${i}`}>
               <td>{document.description}</td>
               <td>{document.status}</td>
               <td>{document.cost ? document.cost : document.total}</td>
